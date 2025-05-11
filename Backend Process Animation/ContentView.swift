@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var rotation: Double = 0
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        
+        Image(systemName: "arrow.clockwise.circle")
+            .rotationEffect(.degrees(rotation))
+            .onAppear{
+                withAnimation(Animation.linear(duration: 1)
+                    .repeatForever(autoreverses: false)){
+                        rotation = 360
+                    }
+            }
     }
 }
 
